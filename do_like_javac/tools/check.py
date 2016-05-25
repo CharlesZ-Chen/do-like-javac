@@ -19,8 +19,8 @@ def run(args, javac_commands, jars):
         pprint.pformat(jc)
         javac_switches = jc['javac_switches']
         cp = javac_switches['classpath']
-        java_files = ' '.join(jc['java_files'])
-        cmd = checker_command + ["-classpath", cp+":"+processor_cp, java_files]
+        cmd = checker_command + ["-classpath", cp+":"+processor_cp]
+        cmd.extend(jc['java_files'])
         print ("Running %s" % cmd)
         try:
             print (subprocess.check_output(cmd, stderr=subprocess.STDOUT))
