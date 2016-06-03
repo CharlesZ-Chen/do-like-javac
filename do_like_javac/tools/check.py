@@ -26,9 +26,14 @@ def run(args, javac_commands, jars):
             cp += ":" + processor_cp
 
         cmd = checker_command + ["-classpath", cp]
-        cmd.extend(jc['java_files'])
-        print ("Running %s" % cmd)
-        try:
-            print (subprocess.check_output(cmd, stderr=subprocess.STDOUT))
-        except subprocess.CalledProcessError as e:
-            print e.output
+
+        for java_file in jc['java_files']:
+            cmd.append(java_file)
+
+            print ("Running %s" % cmd)
+            try:
+                print (subprocess.check_output(cmd, stderr=subprocess.STDOUT))
+            except subprocess.CalledProcessError as e:
+                print e.output
+
+            cmd.pop()
