@@ -9,6 +9,8 @@ import argparse
 argparser = None
 
 def run(args, javac_commands, jars):
+    if javac_commands is None or len(javac_commands) < 1:
+        print "empty javac commands detected, Do your project stay in a clean state?"
     processor_cp = None
     if 'CLASSPATH' in os.environ:
         processor_cp = os.environ['CLASSPATH']
