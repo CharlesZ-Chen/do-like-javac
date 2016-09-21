@@ -39,9 +39,7 @@ def run(args, javac_commands, jars):
         if 'CLASSPATH' in os.environ:
             cp += ':' + os.environ['CLASSPATH']
 
-        cmd = CFI_command + ['-Xms1024m',
-                             '-Xmx2048m',
-                             '-classpath', cp,
+        cmd = CFI_command + ['-classpath', cp,
                              'checkers.inference.InferenceLauncher',
                              '--solverArgs', args.solverArgs,
                              '--cfArgs', args.cfArgs,
